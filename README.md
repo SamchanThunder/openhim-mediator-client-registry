@@ -3,6 +3,7 @@
 ### 2. Standardizes it for OpenCR requirements
 ### 3. Securely forwards it to the client registry (OpenCR)
 ### 4. Obtains Client Registry Unique Identifier (CRUID) and posts the patient data to a shared health record (HAPI FHIR JPA Server) with its CRUID. 
+### Prerequisite: Data that follows HL7 FHIR Standard
 -------------
 ## **How to run the mediator on Docker:**
 
@@ -32,7 +33,7 @@ iii. Click the green plus button to install the mediator.
 4. Create a channel in OpenHIM Console:
 ```
 i.   In the OpenHIM Console, go to Channels
-ii.  Click on the channel that receives patient data from point of services. In my case, it is FHIR Server.
+ii.  Click on the channel that receives FHIR data from point of services. In my case, it is FHIR Server.
 iii. Click on Routes then Add New Route
 iv.  Create a route (Route Name: CR Mediator Route, Host: crmediator, Port: 7060). Then click Set Route and Save Changes.
 ```
@@ -58,7 +59,8 @@ Here is the current standardization logic implemented:
 ```
 -------------------
 ### **Demo:**
-https://github.com/user-attachments/assets/aa9f847e-e1fd-40f2-bb8c-c3cfbd10f50c
+https://github.com/user-attachments/assets/21a923cf-81fe-4527-a4b1-336a9963784d
+
 
 ### **Example of Patient Data on the Shared Health Record (HAPI FHIR JPA Server):**
 <img width="1280" height="737" alt="Screenshot 2025-07-28 150420" src="https://github.com/user-attachments/assets/ae6d2389-5f45-4128-b189-bcbd1702a46e" />

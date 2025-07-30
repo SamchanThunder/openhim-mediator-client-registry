@@ -3,7 +3,7 @@
 ### 2. Standardizes it for OpenCR requirements
 ### 3. Securely forwards it to the client registry (OpenCR)
 ### 4. Obtains Client Registry Unique Identifier (CRUID) and posts the patient data to a shared health record (HAPI FHIR JPA Server) with its CRUID. 
-Prerequisite: Data that follows HL7 FHIR Standard
+### Prerequisite: Data that follows HL7 FHIR Standard
 -------------
 ## **How to run the mediator on Docker:**
 

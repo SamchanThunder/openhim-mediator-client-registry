@@ -19,9 +19,9 @@ app.get('*', (_: Request, res: Response) => {
 });
 
 // Client and Server Certficates' File Path for OpenCR
-var clientCertPath = CERTS.CLIENT_CERT;
-var clientKeyPath = CERTS.CLIENT_KEY;
-var serverCertPath = CERTS.SERVER_CERT;
+const clientCertPath = CERTS.CLIENT_CERT;
+const clientKeyPath = CERTS.CLIENT_KEY;
+const serverCertPath = CERTS.SERVER_CERT;
 
 // Certificate handling for OpenCR
 const httpsAgent = new https.Agent({
@@ -52,11 +52,10 @@ app.post('/fhir/Patient', async (req: Request, res: Response) => {
     */
     if(requestBody.identifier){
       if(requestBody.identifier[0].system){
-        
         /* For example, patient data from CHT has an identifier[0].system = "cht". However, my client registry only accepts
         identifier systems with http://clientregistry.org/, such as http://clientregistry.org/cht
         */
-        var systemName = requestBody.identifier[0].system;
+        let systemName = requestBody.identifier[0].system;
         requestBody.identifier.push({
           use: "official",
           system: "http://clientregistry.org/" + systemName,
@@ -96,7 +95,7 @@ app.post('/fhir/Patient', async (req: Request, res: Response) => {
     */
     if(requestBody.name){
       // Community Tool Healthkit formats the name in its patient data incorrectly to OpenHIM. This corrects it.
-      var nameArray = requestBody.name[0].family.split(' ');
+      let nameArray = requestBody.name[0].family.split(' ');
       if(nameArray.length == 2){
         requestBody.name[0].given[0] = nameArray[0];
         requestBody.name[0].family = nameArray[1];
@@ -133,13 +132,14 @@ app.post('/fhir/Patient', async (req: Request, res: Response) => {
     // Get the CRUID (Client Registry Unique ID)
     const CRUID = axiosResponseCR.headers.locationcruid;
     
-    // Reformat patient data to add its CRUID
+    // Reformat patient data to add its CRUID and OpenHIM ID
     requestBody.identifier[requestBody.identifier.length - 1].value = CRUID;
     requestBody.identifier.push({
       use: "official",
       system: "cruid",
       value: CRUID.substring(8)
     });
+
     console.log("SHR Request Body: \n" , requestBody);
 
     // Post Patient Data with CRUID to a Shared Health Record (Which is a HAPI FHIR Server in my case)

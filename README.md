@@ -60,7 +60,3 @@ Here is the current standardization logic implemented:
 -------------------
 ### **Demo:**
 https://github.com/user-attachments/assets/21a923cf-81fe-4527-a4b1-336a9963784d
-
-
-### **Example of Patient Data on the Shared Health Record (HAPI FHIR JPA Server):**
-<img width="1280" height="737" alt="Screenshot 2025-07-28 150420" src="https://github.com/user-attachments/assets/ae6d2389-5f45-4128-b189-bcbd1702a46e" />
